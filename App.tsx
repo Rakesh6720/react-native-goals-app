@@ -16,6 +16,12 @@ import { Goal } from "./types";
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState<string>();
   const [courseGoals, setCourseGoals] = useState<Goal[]>([]);
+  const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
+
+  const startAddGoalHandler = (event: GestureResponderEvent): void => {
+    console.log("MODAL Pressed");
+    setModalIsVisible(true);
+  };
 
   const goalInputHandler = (text: string) => {
     setEnteredGoalText(text);
@@ -39,10 +45,18 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput
-        goalInputHandler={goalInputHandler}
-        addGoalHandler={addGoalHandler}
+      <Button
+        title="Add New Goal"
+        color="#5e0acc"
+        onPress={startAddGoalHandler}
       />
+      {modalIsVisible && (
+        <GoalInput
+          modalIsVisible={modalIsVisible}
+          goalInputHandler={goalInputHandler}
+          addGoalHandler={addGoalHandler}
+        />
+      )}
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}

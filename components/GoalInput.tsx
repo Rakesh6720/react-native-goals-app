@@ -4,26 +4,31 @@ import {
   Button,
   StyleSheet,
   GestureResponderEvent,
+  Modal,
 } from "react-native";
 
 interface GoalInputProps {
   goalInputHandler: (text: string) => void;
   addGoalHandler: (event: GestureResponderEvent) => void;
+  modalIsVisible: boolean;
 }
 
 export default function GoalInput({
   goalInputHandler,
   addGoalHandler,
+  modalIsVisible,
 }: GoalInputProps) {
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Your course goal!"
-        onChangeText={goalInputHandler}
-      />
-      <Button title="Add Goal" onPress={addGoalHandler} />
-    </View>
+    <Modal visible={modalIsVisible} animationType="slide">
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your course goal!"
+          onChangeText={goalInputHandler}
+        />
+        <Button title="Add Goal" onPress={addGoalHandler} />
+      </View>
+    </Modal>
   );
 }
 
