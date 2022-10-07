@@ -19,8 +19,11 @@ export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState<boolean>(false);
 
   const startAddGoalHandler = (event: GestureResponderEvent): void => {
-    console.log("MODAL Pressed");
     setModalIsVisible(true);
+  };
+
+  const endAddGoalHandler = (event: GestureResponderEvent): void => {
+    setModalIsVisible(false);
   };
 
   const goalInputHandler = (text: string) => {
@@ -35,6 +38,7 @@ export default function App() {
         id: Math.random().toString(),
       },
     ]);
+    setModalIsVisible(false);
   };
 
   const deleteGoalHandler = (id: string): void => {
@@ -55,6 +59,7 @@ export default function App() {
           modalIsVisible={modalIsVisible}
           goalInputHandler={goalInputHandler}
           addGoalHandler={addGoalHandler}
+          closeModal={endAddGoalHandler}
         />
       )}
       <View style={styles.goalsContainer}>

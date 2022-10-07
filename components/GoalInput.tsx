@@ -11,12 +11,14 @@ interface GoalInputProps {
   goalInputHandler: (text: string) => void;
   addGoalHandler: (event: GestureResponderEvent) => void;
   modalIsVisible: boolean;
+  closeModal: (event: GestureResponderEvent) => void;
 }
 
 export default function GoalInput({
   goalInputHandler,
   addGoalHandler,
   modalIsVisible,
+  closeModal,
 }: GoalInputProps) {
   return (
     <Modal visible={modalIsVisible} animationType="slide">
@@ -31,7 +33,7 @@ export default function GoalInput({
             <Button title="Add Goal" onPress={addGoalHandler} />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" />
+            <Button title="Cancel" onPress={closeModal} />
           </View>
         </View>
       </View>
