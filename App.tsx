@@ -12,6 +12,7 @@ import {
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 import { Goal } from "./types";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState<string>();
@@ -48,37 +49,40 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-      />
-      {modalIsVisible && (
-        <GoalInput
-          modalIsVisible={modalIsVisible}
-          goalInputHandler={goalInputHandler}
-          addGoalHandler={addGoalHandler}
-          closeModal={endAddGoalHandler}
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#a065ec"
+          onPress={startAddGoalHandler}
         />
-      )}
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            return (
-              <GoalItem
-                itemData={itemData}
-                deleteGoalHandler={deleteGoalHandler}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-        />
+        {modalIsVisible && (
+          <GoalInput
+            modalIsVisible={modalIsVisible}
+            goalInputHandler={goalInputHandler}
+            addGoalHandler={addGoalHandler}
+            closeModal={endAddGoalHandler}
+          />
+        )}
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              return (
+                <GoalItem
+                  itemData={itemData}
+                  deleteGoalHandler={deleteGoalHandler}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
