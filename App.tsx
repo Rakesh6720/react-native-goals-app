@@ -1,12 +1,9 @@
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import {
   StyleSheet,
-  Text,
   View,
   Button,
-  TextInput,
   GestureResponderEvent,
-  ScrollView,
   FlatList,
 } from "react-native";
 import GoalItem from "./components/GoalItem";
